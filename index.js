@@ -43,7 +43,26 @@ class Airplane {
 */
 
 class Person {
-  
+  constructor(name, age) {
+
+    this.name = name;
+    this.age = age;
+    this.stomach = [];
+  }
+
+  eat(food) {
+    if(food.length < 10) {
+      this.stomach.push(food);
+    }
+  }
+
+  poop() {
+    this.stomach = [];
+  }
+
+  toString() {
+    return `${this.name}, ${this.age}`;
+  }
 }
 
 /*
@@ -61,7 +80,26 @@ class Person {
 */
 
 class Car {
-  
+  constructor(model, milesPerGallon) {
+
+    this.model = model;
+    this.milesPerGallon = milesPerGallon;
+    this.tank = 0;
+    this.odometer = 0;
+  }
+
+  fill(gallons) {
+    this.tank += gallons;
+  }
+
+  drive(distance) {
+    if(this.tank < 0) {
+      this.odometer += distance;
+      this.tank -= (this.milesPerGallon/distance);
+    } else {
+      return `I ran out of fuel at ${this.odometer} miles!`
+    }
+  }
 }
 
 /*
@@ -77,8 +115,18 @@ class Car {
         + {name} and {location} of course come from the instance's own properties.
 */
 class Lambdasian {
-  
+  constructor(attributes) {
+    this.name = attributes.name;
+    this.age = attributes.age;
+    this.location = attributes.location;
+  }
+
+  speak() {
+    return `Hello my name is ${this.name}, I am from ${this.location}`;
+  }
 }
+
+
 
 /*
   TASK 4
@@ -94,8 +142,18 @@ class Lambdasian {
         + `demo` receives a `subject` string as an argument and returns the phrase 'Today we are learning about {subject}' where subject is the param passed in.
         + `grade` receives a `student` object and a `subject` string as arguments and returns '{student.name} receives a perfect score on {subject}'
 */
-class Instructor {
+class Instructor extends Lambdasian {
+  constructor(instructorAttys) {
+    super(instructorAttys);
 
+    this.specialty = instructorAttys.specialty;
+    this.favLanguage = instructorAttys.favLanguage;
+    this.catchPhrase = instructorAttys.catchPhrase;
+  }
+
+  demo(subject) {
+    return `Today we are learning about ${subject}`
+  }
 }
 /*
   TASK 5
